@@ -2909,8 +2909,12 @@ var app = {
         });
         var input = document.getElementById('search_address_geo');
         var latlngbounds = new google.maps.LatLngBounds();
-
-
+    if(!sessionStorage.getItem('changeLat')  &&   !sessionStorage.getItem('changeLng')){
+            sessionStorage.removeItem('changeLat')
+            sessionStorage.removeItem('changeLng')
+            sessionStorage.setItem('changeLat', latitude)
+            sessionStorage.setItem('changeLng', longitude)
+    }
     var searchBox = new google.maps.places.SearchBox(input);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -2991,9 +2995,24 @@ var app = {
             position: new google.maps.LatLng( parseFloat(sessionStorage.getItem("changeLat")), parseFloat(sessionStorage.getItem("changeLng"))),
         }));
     });
+ google.maps.event.addListener(map, 'center_changed', function() { 
+  console.log( map.getCenter().lat() );
+  console.log( map.getCenter().lng() );
+               sessionStorage.removeItem('changeLat')
+        sessionStorage.removeItem('changeLng')
+        sessionStorage.setItem('changeLat',map.getCenter().lat())
+        sessionStorage.setItem('changeLng',map.getCenter().lng() )
+        markers.forEach(function(marker) {
+            marker.setMap(null);
+        });
+        markers= [];
+        markers.push(new google.maps.Marker({
+            map: map,
+            position: new google.maps.LatLng( parseFloat(sessionStorage.getItem("changeLat")), parseFloat(sessionStorage.getItem("changeLng"))),
+        }));
+});
  
-        
-    },
+     },
     
     onError: function(error){
         alert("the code is " + error.code + ". \n" + "message: " + error.message);
@@ -3099,8 +3118,7 @@ app.initialize();
 }
 function useThisLocation() {
       codeLatLng3(sessionStorage.getItem("changeLat"),sessionStorage.getItem("changeLng"))
-      console.log(codeLatLng3(sessionStorage.getItem("changeLat"),sessionStorage.getItem("changeLng")));
-
+ 
  
 }
 function checkGPS_AddressMap() {
@@ -4670,6 +4688,7 @@ console.log(lat, lng)
                    
 
         }
+         
           if(region&&street&&city){
 
             $(".street").val(street);
@@ -4692,7 +4711,6 @@ console.log(lat, lng)
          
                } 
                   $(".delivery-address-text").html(complete_address);
-             console.log( myNavigator);
               myNavigator.popPage({
                   callback : function() {
                       myNavigator.popPage()

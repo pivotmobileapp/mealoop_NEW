@@ -447,10 +447,14 @@ $scope.bookNow = function(d){
   $scope.rest_part = [] 
     $scope.restaurant = function () {
   $scope.showModal();
+              if(document.querySelectorAll('#autocomplete')[document.querySelectorAll('#autocomplete').length-1]){
   var address = document.querySelectorAll('#autocomplete')[document.querySelectorAll('#autocomplete').length-1].value;
+  
   sessionStorage.removeItem("_address");
   sessionStorage.setItem("_address", address);
-
+}else{
+    var address  = sessionStorage.getItem("_address");
+}
   var str = sessionStorage.getItem("_address");
   var _str = str.substring(0, str.indexOf(","))
 
