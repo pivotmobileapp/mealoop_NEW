@@ -86,7 +86,7 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashScreenDelay" value="10000" />
     <preference name="fullscreen" value="false" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="20" />
     <allow-navigation href="*" />
     <allow-intent href="*" />
     <access origin="*" />
