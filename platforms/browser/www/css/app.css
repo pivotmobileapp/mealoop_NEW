@@ -1299,6 +1299,7 @@ price, .onsen-display price {
 }
 .total-amount {
     margin: auto;
+    color: #000000;
 }
 #page-itemdisplay p.description.item-name, .onsen-display p.description.item-name {
     display: inline;
