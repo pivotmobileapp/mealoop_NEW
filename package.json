@@ -1,0 +1,24 @@
+{
+    "name": "com.mealoop",
+    "displayName": "Mealoop",
+    "cordova": {
+        "platforms": [
+            "android",
+            "browser",
+            "ios"
+        ],
+        "plugins": {
+            "cordova-plugin-media-capture": {
+                "CAMERA_USAGE_DESCRIPTION": "App would like to access the camera.",
+                "MICROPHONE_USAGE_DESCRIPTION": "App would like to access the microphone.",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": "App would like to access the library."
+            }
+        }
+    },
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "cordova-browser": "^4.1.0",
+        "cordova-ios": "^4.5.0",
+        "cordova-plugin-media-capture": "*"
+    }
+}
